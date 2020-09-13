@@ -16,6 +16,7 @@ public class Order {
 		this.date = date;
 		this.idClientsOrder = idClientsOrder;
 		this.nitRestaurant = nitRestaurant;
+		this.stateOrder = stateOrder;
 	}
 
 	public String getIdOrder() {
