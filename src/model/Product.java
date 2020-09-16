@@ -4,7 +4,7 @@ public class Product {
 
 	private String idProduct;
 	private String nameProduct;
-	private String Description;
+	private String description;
 	private String cost;
 	private String restaurantNit;
 	
@@ -12,7 +12,7 @@ public class Product {
 		super();
 		this.idProduct = idProduct;
 		this.nameProduct = nameProduct;
-		Description = description;
+		this.description = description;
 		this.cost = cost;
 		this.restaurantNit = restaurantNit;
 	}
@@ -26,7 +26,7 @@ public class Product {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public String getCost() {

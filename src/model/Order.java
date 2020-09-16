@@ -8,16 +8,15 @@ public class Order {
 	private LocalDate date;
 	private String idClientsOrder;
 	private String nitRestaurant;
-	private String stateOrder;
+	private StateOrder stateOrder;
 	
-	public Order(String idOrder, LocalDate date, String idClientsOrder, String nitRestaurant, String stateOrder) {
+	public Order(String idOrder, LocalDate date, String idClientsOrder, String nitRestaurant, StateOrder stateOrder) {
 		super();
 		this.idOrder = idOrder;
 		this.date = date;
 		this.idClientsOrder = idClientsOrder;
 		this.nitRestaurant = nitRestaurant;
-		this.stateOrder = stateOrder;
-	}
+		this.stateOrder = stateOrder;	}
 
 	public String getIdOrder() {
 		return idOrder;
@@ -35,11 +34,11 @@ public class Order {
 		return nitRestaurant;
 	}
 
-	public String getStateOrder() {
+	public StateOrder getStateOrder() {
 		return stateOrder;
 	}
 
-	public void setStateOrder(String stateOrder) {
+	public void setStateOrder(StateOrder stateOrder) {
 		this.stateOrder = stateOrder;
 	}
 	

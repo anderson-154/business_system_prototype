@@ -14,49 +14,48 @@ public class Menu {
 	
 	public Menu() {
 	
-		sc = new Scanner(System.in);
-		prototype = new Control();
-	}
-	
-	public void startMenu() {
-		String m = getMenuText();
-		int option;
-		do {
-			System.out.println(m);
-			option = readOption();
-			executeOperation(option);
-		}while(option!=EXIT_OPTION);
-	}
-	
-	private String getMenuText() {
-		String m;
-		m = "===============\n";
-		m+= "    Menu\n";
-		m+= "===============\n";
-		m+= "1. \n";
-		m+= "2. \n";
-		m+= "3.\n";
-		
-		return m;
-	}
-	private int readOption() {
-		int option;
-		option= Integer.parseInt(sc.nextLine()); 
-		return option;
-	}
-	
-	private void executeOperation(int option) {
-			
-		switch(option) {
-			
-			
-		default: break;
+			sc = new Scanner(System.in);
+			prototype = new Control();
 		}
-	}
-	
-	private void exitProgram() {
-		sc.close();
-	}
+		
+		public void startMenu() {
+			String m = getMenuText();
+			int option;
+			do {
+				System.out.println(m);
+				option = readOption();
+				executeOperation(option);
+			}while(option!=EXIT_OPTION);
+		}
+		
+		private String getMenuText() {
+			String m;
+			m = "===============\n";
+			m+= "    Menu\n";
+			m+= "===============\n";
+			m+= "1. \n";
+			m+= "2. \n";
+			m+= "3.\n";
+			
+			return m;
+		}
+		private int readOption() {
+			int option;
+			option= Integer.parseInt(sc.nextLine()); 
+			return option;
+		}
+		
+		private void executeOperation(int option) {
+				
+			switch(option) {
+			case 1:	exitProgram(); break;
+			default: break;
+			}
+		}
+		
+		private void exitProgram() {
+			sc.close();
+		}
 	
 	}
 
