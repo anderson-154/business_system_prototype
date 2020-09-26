@@ -38,6 +38,7 @@ public class Menu {
 			m+= "3.\n";
 			
 			return m;
+			
 		}
 		private int readOption() {
 			int option;
@@ -48,7 +49,7 @@ public class Menu {
 		private void executeOperation(int option) {
 				
 			switch(option) {
-			case 1:	exitProgram(); break;
+			case 1: exitProgram(); break;
 			default: break;
 			}
 		}

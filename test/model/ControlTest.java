@@ -28,8 +28,9 @@ class ControlTest {
 		control.addProduct("8545", "arroz", "papa pa hacer la sopa", "456", "3232");
 	}
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void test() throws EmptyDataException {
+		setup1();
+		control.addClient("CC", "2002949", "alfredo", "feo", "3182930312", "callle 23. 32-12");
 	}
 
 }
