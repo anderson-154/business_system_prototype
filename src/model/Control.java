@@ -1,5 +1,9 @@
 package model;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -12,7 +16,10 @@ public class Control {
 	private Product [] products;
 	private Client [] clients;
 	private Order[] orders;
-	
+	public final static String SAVE_PATH_CLIENTS="data/clients.txt";
+	public final static String SAVE_PATH_PRODUCTS="data/products.txt";
+	public final static String SAVE_PATH_RESTAURANTS="data/restaurants.txt";
+	public final static String SAVE_PATH_ORDERS="data/orders.txt";
 	public Control() {
 		super();
 	}
@@ -210,8 +217,19 @@ public class Control {
 		}
 	}
 
-	public void updateData() {
-		
+	public void updateData() throws FileNotFoundException, IOException {
+		ObjectOutputStream file_client = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_CLIENTS));
+		ObjectOutputStream file_Product = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_PRODUCTS));
+		ObjectOutputStream file_restaurant = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_RESTAURANTS));
+		ObjectOutputStream file_order = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_ORDERS));
+		file_client.writeObject(clients);
+		file_Product.writeObject(products);
+		file_restaurant.writeObject(restaurants);
+		file_order.writeObject(orders);
+		file_client.close();
+		file_Product.close();
+		file_restaurant.close();
+		file_order.close();
 	}
 	
 	public void updateProducts(String idProduct) {
