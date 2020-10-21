@@ -43,6 +43,30 @@ public class Client {
 	public String getDirection() {
 		return direction;
 	}
+
+	public void setTypeId(String typeId) {
+		this.typeId = typeId;
+	}
+
+	public void setIdClient(String idClient) {
+		this.idClient = idClient;
+	}
+
+	public void setNameClient(String nameClient) {
+		this.nameClient = nameClient;
+	}
+
+	public void setLastNameClient(String lastNameClient) {
+		this.lastNameClient = lastNameClient;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
 	
 	
 	

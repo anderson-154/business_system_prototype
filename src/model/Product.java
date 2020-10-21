@@ -36,5 +36,25 @@ public class Product {
 	public String getRestaurantNit() {
 		return restaurantNit;
 	}
+
+	public void setIdProduct(String idProduct) {
+		this.idProduct = idProduct;
+	}
+
+	public void setNameProduct(String nameProduct) {
+		this.nameProduct = nameProduct;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setCost(String cost) {
+		this.cost = cost;
+	}
+
+	public void setRestaurantNit(String restaurantNit) {
+		this.restaurantNit = restaurantNit;
+	}
 	
 }

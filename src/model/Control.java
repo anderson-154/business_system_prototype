@@ -1,111 +1,52 @@
 package model;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.time.LocalDate;
-import java.util.Arrays;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 import customException.EmptyDataException;
 
 
 public class Control {
 
-	private Restaurant[] restaurants;
-	private Product [] products;
-	private Client [] clients;
-	private Order[] orders;
-	public final static String SAVE_PATH_CLIENTS="data/clients.txt";
-	public final static String SAVE_PATH_PRODUCTS="data/products.txt";
-	public final static String SAVE_PATH_RESTAURANTS="data/restaurants.txt";
-	public final static String SAVE_PATH_ORDERS="data/orders.txt";
+	private List<Restaurant> restaurants;
+	private List<Product>  products;
+	private List<Client> clients;
+	private List<Order> orders;
+
 	public Control() {
-		super();
+		clients = new ArrayList<>();
+		restaurants = new ArrayList<>();
 	}
 	
 	public void sortByFullName() {
-		Arrays.sort(clients, new ClientFullNameSort());
-	}
-	
-	public void sortRestaurantByName() {
-		for(int i =0;i<restaurants.length-1;i++) {
-			
-			String minName = restaurants[i].getName();
-			int minPos =i;
-			
-			for(int j = i+1;j<restaurants.length;j++) {
-				String CurrentName = restaurants[i].getName();
-				if(minName.compareTo(CurrentName)<0) {
-					minName = CurrentName;
-					minPos=j;
-				}
-			}
-			Restaurant temp = restaurants[i];
-			restaurants[minPos]=restaurants[i];
-			restaurants[i]=temp;
-
-		}
+		Collections.sort(clients, new ClientFullNameSort());
 	}
 
 	public void addRestaurant(String name, String nit, String adminName) throws EmptyDataException {
 		String msg="";
-		boolean exception = false;
+		boolean exception=false;
+		
 		if(name == null) {
-			exception=true;	
-			msg+="name";
+			exception=true;
+			msg+= "id product";
 		}
 		if(nit == null) {
-			exception = true;
-			msg+="nit";
+			exception=true;
+			msg+= "product name";
 		}
 		if(adminName == null) {
-			exception = true;
-			msg+="admin name";
+			exception=true;
+			msg+= "description";
 		}
 		if(exception) {
 			throw new EmptyDataException(msg);
 		}
 		else {
-			int posRestaurant = searchFirstAvailableRestaurant();
-			restaurants[posRestaurant] = new Restaurant(name, nit, adminName);
-		}		
-	}
-	
-	private int searchFirstAvailableRestaurant() {
-		int pos = -1;
-		for (int i = 0; i < restaurants.length && pos==-1; i++) {
-			Restaurant current = restaurants[i];
-			if(current==null) {
-				pos = i;
-			}
+			restaurants.add(new Restaurant(name,nit,adminName));
 		}
-		
-		return pos;
-	}
-	
-	private int searchFirstAvailableProducts() {
-		int pos = -1;
-		for (int i = 0; i < products.length && pos==-1; i++) {
-			Product current = products[i];
-			if(current==null) {
-				pos = i;
-			}
-		}
-		
-		return pos;
-	}
-	
-	private int searchFirstAvailableOrder() {
-		int pos = -1;
-		for (int i = 0; i < orders.length && pos==-1; i++) {
-			Order current = orders[i];
-			if(current==null) {
-				pos = i;
-			}
-		}
-		
-		return pos;
 	}
 	
 	public void addProduct(String idProduct, String nameProduct, String description, String cost, String restaurantNit) throws EmptyDataException {
@@ -136,8 +77,7 @@ public class Control {
 			throw new EmptyDataException(msg);
 		}
 		else {
-			int posProduct = searchFirstAvailableProducts();
-			products[posProduct] = new Product(idProduct,  nameProduct,  description,  cost,  restaurantNit);
+			products.add(new Product(idProduct, nameProduct, description, cost, restaurantNit));
 		}
 	}
 	
@@ -173,19 +113,12 @@ public class Control {
 			throw new EmptyDataException(msg);
 		}
 		else {
-			int i=0;
-			if(clients.length==0) {
-				clients[i] = new Client(typeId,  idClient,  nameClient,  lastNameClient,  tel,  direction);
-			}else {
-				while(lastNameClient.compareTo(clients[i].getLastNameClient())>0) {
-					i++;
-				}
-				clients[i] = new Client(typeId,  idClient,  nameClient,  lastNameClient,  tel,  direction);
-			}
+			clients.add(new Client(typeId, idClient, nameClient, lastNameClient, tel, direction));
+			sortByFullName();
 		}
 	}
 	
-	public void registerOrder(String idOrder, LocalDate date, String idClientsOrder, String nitRestaurant, StateOrder stateOrder) throws EmptyDataException {
+	public void registerOrder(String idOrder, Date date, String idClientsOrder, String nitRestaurant, String stateOrder) throws EmptyDataException {
 		String msg="";
 		Boolean exception = false;
 		if(idOrder == null) {
@@ -212,35 +145,33 @@ public class Control {
 			throw new EmptyDataException(msg);
 		}
 		else {
-			int posOrder=searchFirstAvailableOrder();
-			orders[posOrder] = new Order(idOrder, date, idClientsOrder, nitRestaurant, stateOrder);
+			orders.add(new Order(idOrder, date, idClientsOrder, nitRestaurant, stateOrder));
 		}
 	}
+	
+	public void addProductToARestaurant(String restarantNit, Product NewProduct) {
 
-	public void updateData() throws FileNotFoundException, IOException {
-		ObjectOutputStream file_client = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_CLIENTS));
-		ObjectOutputStream file_Product = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_PRODUCTS));
-		ObjectOutputStream file_restaurant = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_RESTAURANTS));
-		ObjectOutputStream file_order = new ObjectOutputStream(new FileOutputStream(SAVE_PATH_ORDERS));
-		file_client.writeObject(clients);
-		file_Product.writeObject(products);
-		file_restaurant.writeObject(restaurants);
-		file_order.writeObject(orders);
-		file_client.close();
-		file_Product.close();
-		file_restaurant.close();
-		file_order.close();
+        for (int i = 0; i < restaurants.size(); i++) {
+            if (restaurants.get(i).getNit().equals(restarantNit)) {
+            	restaurants.get(i).addProduct(NewProduct);
+            }
+        }
+    }
+	
+	 public List<Client> getClients() {
+	        return clients;
+	    }
+
+	public List<Restaurant> getRestaurants() {
+		return restaurants;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
 	}
 	
-	public void updateProducts(String idProduct) {
-		
-	}
-	
-	public void updateClients(String idClient) {
-		
-	}
-	
-	public void updateOrder(String idOrder) {
-		
-	}
 }
