@@ -9,15 +9,16 @@ import model.Control;
 
 public class Menu {
 
-	public static final int EXIT_OPTION = 10;
-
+	public static final int EXIT_OPTION = 12;
 	public Scanner sc;
 	public Control prototype;
+	public Serializable Serealizable;
 
 	public Menu() {
 
 		sc = new Scanner(System.in);
 		prototype = new Control();
+		Serealizable = new Serializable(prototype);
 	}
 
 	public void startMenu() {
@@ -44,13 +45,16 @@ public class Menu {
 		m += "7. Update info restaurant \n";
 		m += "8. Update info product \n";
 		m += "9. Update info order \n";
+		m += "10. restauran csv \n";
+		m += "11. products csv \n";
 		return m;
 
 	}
 
 	private int readOption() {
 		int option;
-		option = Integer.parseInt(sc.nextLine());
+		option = sc.nextInt();
+		sc.nextLine();
 		return option;
 	}
 
@@ -80,8 +84,7 @@ public class Menu {
 			String description = sc.nextLine();
 			System.out.println("whats is the coste product?");
 			String cost = sc.nextLine();
-			System.out.println("whats is the quantity product?");
-			System.out.println("Please enter the ID of the restaurant to which you want to add product?");
+			System.out.println("whats is the restaurant nit product?");
 			String restaurantNit = sc.nextLine();
 			try {
 				prototype.addProduct(idProduct, nameProduct, description, cost, restaurantNit);
@@ -115,40 +118,38 @@ public class Menu {
 			break;
 
 		case 4:
-			System.out.println("How many orders do you want");
-			int opt = sc.nextInt();
+
 			String stateOrder = " ";
-			for (int i = 0; i < opt; i++) {
-				Date date = new Date();
-				String idOrder = String.valueOf((int) (1000000 * Math.random()));
-				System.out.println("Enter the client's id:");
-				String idClientsOrder = sc.nextLine();
-				System.out.println("Enter the ID of the restaurant");
-				String nitRestaurant = sc.nextLine();
+			Date date = new Date();
+			String idOrder = String.valueOf((int) (1000000 * Math.random()));
+			System.out.println("Enter the client's id:");
+			String idClientsOrder = sc.nextLine();
+			System.out.println("Enter the ID of the restaurant");
+			String nitRestaurant = sc.nextLine();
 
-				System.out.println("Enter dof order status");
-				System.out.println("(1).REQUESTED");
-				System.out.println("(2).IN PROGRESS");
-				System.out.println("(3).SENT");
-				System.out.println("(4).DElIVERED");
+			System.out.println(" ");
+			System.out.println("Enter the order status");
+			System.out.println("1.REQUESTED");
+			System.out.println("2.IN PROGRESS");
+			System.out.println("3.SENT");
+			System.out.println("4.DElIVERED");
 
-				opt = sc.nextInt();
+			int opt = sc.nextInt();
 
-				if (opt == 1) {
-					stateOrder = "Requested";
-				} else if (opt == 2) {
-					stateOrder = "Process";
-				} else if (opt == 3) {
-					stateOrder = "Sent";
-				} else if (opt == 4) {
-					stateOrder = "Delivered";
-				}
+			if (opt == 1) {
+				stateOrder = "Requested";
+			} else if (opt == 2) {
+				stateOrder = "Process";
+			} else if (opt == 3) {
+				stateOrder = "Sent";
+			} else if (opt == 4) {
+				stateOrder = "Delivered";
+			}
 
-				try {
-					prototype.registerOrder(idOrder, date, idClientsOrder, nitRestaurant, stateOrder);
-				} catch (EmptyDataException e) {
-					e.getMessage();
-				}
+			try {
+				prototype.registerOrder(idOrder, date, idClientsOrder, nitRestaurant, stateOrder);
+			} catch (EmptyDataException e) {
+				e.getMessage();
 			}
 
 			break;
@@ -296,8 +297,7 @@ public class Menu {
 
 				for (int j = 0; j < prototype.getRestaurants().get(i).getProduct().size(); j++) {
 
-					if ((codeProduct
-							.equalsIgnoreCase(prototype.getRestaurants().get(i).getProduct().get(j).getIdProduct()))) {
+					if ((codeProduct.equalsIgnoreCase(prototype.getRestaurants().get(i).getProduct().get(j).getIdProduct()))) {
 						System.out.println("please enter the information of the product you want to update ");
 						System.out.println("1. id product \n");
 						System.out.println("2. name \n");
@@ -389,9 +389,16 @@ public class Menu {
 			}
 			break;
 
-		case 10:exitProgram();break;
-		default:
+		case 10:
+			Serealizable.restaurantsCSV();
 			break;
+			
+		case 11:
+			Serealizable.productsCSV();;
+			break;
+			
+		case 12:exitProgram();break;
+		default:break;
 		}
 	}
 

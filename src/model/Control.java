@@ -19,6 +19,8 @@ public class Control {
 	public Control() {
 		clients = new ArrayList<>();
 		restaurants = new ArrayList<>();
+		products = new ArrayList<>();
+		orders = new ArrayList<>();
 	}
 	
 	public void sortByFullName() {
@@ -29,15 +31,15 @@ public class Control {
 		String msg="";
 		boolean exception=false;
 		
-		if(name == null) {
+		if(name == "") {
 			exception=true;
 			msg+= "id product";
 		}
-		if(nit == null) {
+		if(nit == "") {
 			exception=true;
 			msg+= "product name";
 		}
-		if(adminName == null) {
+		if(adminName == "") {
 			exception=true;
 			msg+= "description";
 		}
@@ -53,23 +55,23 @@ public class Control {
 		String msg="";
 		boolean exception=false;
 		
-		if(idProduct == null) {
+		if(idProduct == "") {
 			exception=true;
 			msg+= "id product";
 		}
-		if(nameProduct == null) {
+		if(nameProduct == "") {
 			exception=true;
 			msg+= "product name";
 		}
-		if(description == null) {
+		if(description == "") {
 			exception=true;
 			msg+= "description";
 		}
-		if(cost == null) {
+		if(cost == "") {
 			exception=true;
 			msg+= "cost";
 		}
-		if(restaurantNit == null) {
+		if(restaurantNit == "") {
 			exception=true;
 			msg+= "restaurant nit";
 		}
@@ -85,27 +87,27 @@ public class Control {
 		
 		String msg="";
 		boolean exception = false;
-		if(typeId == null) {
+		if(typeId == "") {
 			exception= true;
 			msg+= "type id";
 		}
-		if(idClient == null) {
+		if(idClient == "") {
 			exception= true;
 			msg+= "id client";
 		}
-		if(nameClient == null) {
+		if(nameClient == "") {
 			exception= true;
 			msg+= "name client";
 		}
-		if(lastNameClient == null) {
+		if(lastNameClient == "") {
 			exception= true;
 			msg+= "last name client";
 		}
-		if(tel == null) {
+		if(tel == "") {
 			exception= true;
 			msg+= "tel";
 		}
-		if(direction == null) {
+		if(direction == "") {
 			exception= true;
 			msg+= "direction";
 		}
@@ -121,7 +123,7 @@ public class Control {
 	public void registerOrder(String idOrder, Date date, String idClientsOrder, String nitRestaurant, String stateOrder) throws EmptyDataException {
 		String msg="";
 		Boolean exception = false;
-		if(idOrder == null) {
+		if(idOrder == "") {
 			exception= true;
 			msg+= "id order";
 		}
@@ -129,15 +131,15 @@ public class Control {
 			exception= true;
 			msg+= "date";
 		}
-		if(idClientsOrder == null) {
+		if(idClientsOrder == "") {
 			exception= true;
 			msg+= "id client's order";
 		}
-		if(nitRestaurant == null) {
+		if(nitRestaurant == "") {
 			exception= true;
 			msg+= "restaurant nit";
 		}
-		if(stateOrder == null) {
+		if(stateOrder == "") {
 			exception= true;
 			msg+= "state order";
 		}

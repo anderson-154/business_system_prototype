@@ -31,6 +31,17 @@ class ControlTest {
 	void test() throws EmptyDataException {
 		setup1();
 		control.addClient("CC", "2002949", "alfredo", "feo", "3182930312", "callle 23. 32-12");
+		assertEquals(1,control.getClients().size());
+		assertEquals(0,control.getProducts().size());
 	}
-
+	
+	@Test
+	void test2() throws EmptyDataException {
+		setup2();
+		control.addProduct("32432", "papa", "no hay nada", "342", "3424234");
+		control.addRestaurant("lolas", "3243242", "dario");
+		assertEquals(5,control.getProducts().size());
+		assertEquals(1,control.getRestaurants().size());
+		assertEquals(0,control.getOrders().size());
+	}
 }
