@@ -4,6 +4,12 @@ import java.util.Comparator;
 
 public class ClientFullNameSort implements Comparator<Client>{
 
+	/**
+	 * method compare
+	 * @param cl1, Client cl1!=null
+	 * @param cl2, Client cl2!=null
+	 */
+	
 	@Override
 	public int compare(Client cl1, Client cl2) {
 		

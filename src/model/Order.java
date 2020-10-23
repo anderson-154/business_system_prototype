@@ -13,6 +13,14 @@ public class Order {
 	private String nitRestaurant;
 	private String stateOrder;
 
+	/**
+	 * method constructor
+	 * @param idOrder
+	 * @param date
+	 * @param idClientsOrder
+	 * @param nitRestaurant
+	 * @param stateOrder
+	 */
 	public Order(String idOrder, Date date, String idClientsOrder, String nitRestaurant, String stateOrder) {
 		super();
 		this.idOrder = idOrder;

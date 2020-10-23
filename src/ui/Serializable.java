@@ -17,7 +17,7 @@ public class Serializable {
 	}
 
 	public void restaurantsCSV() {
-		Path filePath = Paths.get("./doc/restaurants.csv");
+		Path filePath = Paths.get("doc/restaurants.csv");
 		try {
 			BufferedReader br = Files.newBufferedReader(filePath);
 			String line;
@@ -40,7 +40,7 @@ public class Serializable {
 	}
 
 	public void productsCSV() {
-		Path filePath = Paths.get("./doc/products.csv");
+		Path filePath = Paths.get("doc/products.csv");
 		try {
 			BufferedReader br = Files.newBufferedReader(filePath);
 			String line;

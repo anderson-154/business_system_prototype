@@ -9,6 +9,14 @@ public class Client {
 	private String tel;
 	private String direction;
 	
+	/**method constructor
+	 * @param typeId!=""
+	 * @param idClient!=""
+	 * @param nameClient!=""
+	 * @param lastNameClient!=""
+	 * @param tel!=""
+	 * @param direction!=""
+	 */
 	public Client(String typeId, String idClient, String nameClient, String lastNameClient, String tel, String direction) {
 		super();
 		this.typeId = typeId;

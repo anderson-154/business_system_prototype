@@ -8,6 +8,14 @@ public class Product {
 	private String cost;
 	private String restaurantNit;
 	
+	/**
+	 * method constructor
+	 * @param idProduct
+	 * @param nameProduct
+	 * @param description
+	 * @param cost
+	 * @param restaurantNit
+	 */
 	public Product(String idProduct, String nameProduct, String description, String cost, String restaurantNit) {
 		super();
 		this.idProduct = idProduct;
